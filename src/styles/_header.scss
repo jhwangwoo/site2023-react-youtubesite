@@ -36,7 +36,15 @@
         
     }
 }
-
+@media  (max-width: 1200px) {
+    #header {
+        .logo {
+            font-size: 15px;
+            a {
+            }
+        }
+    }
+}
 
 @media  (max-width: 800px) {
     #header {
