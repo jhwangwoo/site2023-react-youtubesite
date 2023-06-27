@@ -1,0 +1,95 @@
+#main {
+    margin-top: 60px;
+    display: flex;
+    #aside {
+        width: 300px;
+        background-color: #000;
+        color: #fff;       
+            button {
+                width: 100%;
+                padding: 10px;
+                display: block;
+                &:hover {
+                    background-color: #a42121;
+                }
+                span:first-child {
+                    vertical-align: -1px;
+                }
+                span {
+                    width: 100%;
+                    color: #fff;
+                    font-size:18px;
+                    line-height: 1.5;
+                    padding: 2px;
+                }
+
+            }
+        }
+    }
+    #contents {
+        width: 200ex;
+        background-color: #000;
+        color: #fff;
+        h2 {
+            padding: 30px;
+        }
+
+        div {
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                li {
+                    margin: 20px 15px;
+                    display: block;
+                    width: 45.555%;
+                    background-color: #b4b6ae;
+
+                }
+            }
+        }
+    }
+
+
+@media  (max-width: 800px) {
+    #main {
+        margin-top: 110px;
+        #aside{
+            width: 200px;
+                button {
+                    word-break:break-all;
+                    white-space:break-spaces;
+                    font-weight: 600;
+                    font-size:10px;
+                    span{
+                        width: 100%;
+                        color: #fff;
+                        font-size:10Px;
+                        line-height: 1.5;
+                        padding: 5px 2PX;
+    
+    
+                    }
+                }   
+            
+            }   
+        }
+    #contents {
+        width: 200ex;
+        background-color: #000;
+        color: #fff;
+
+        div {
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                li {
+                    margin: 20px 15px;
+                    display: block;
+                    width: 100%;
+                    background-color: #b4b6ae;
+
+                }
+            }
+        }
+    }
+}
