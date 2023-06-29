@@ -1,10 +1,10 @@
 import React from 'react';
 import { VideoCard } from './';
 
-const Videos = ({ youtubes }) => {
+const Videos = ({ videos }) => {
     return (
         <div className="videos__inner">
-            {youtubes.map((youtube, index) => (
+            {videos.map((youtube, index) => (
                 <VideoCard key={index} video={youtube} />
             ))}
         </div>
