@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import { Category, Videos } from './';
+import { useLocation } from 'react-router-dom';
+// import {SearchConts} from './';
 
 const MainConts = () => {
     const [selectCategory, setSelectCategory] = useState('또간집');
     const [videos, setVideos] = useState([]);
+    const location = useLocation();
 
     useEffect(() => {
+        if (location.state && location.state.category) {
+            setSelectCategory(location.state.category);
+        }
+    }, [location.state]);
+    useEffect(() => {
         fetch(
-            'https://webstoryboy.github.io/site-youtube01/src/utils/test.json',
-            // `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=48&q=${selectCategory}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`,
+            // 'https://webstoryboy.github.io/site-youtube01/src/utils/test.json',
+            `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=48&q=${selectCategory}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`,
         )
             .then(response => response.json())
             .then(result => setVideos(result.items))

@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Category, Videos } from './';
 import Loader from './Loader';
-import { useParams } from 'react-router-dom';
+import { useParams,useNavigate  } from 'react-router-dom';
+
 const SearchConts = () => {
     const [selectCategory, setSelectCategory] = useState();
     const [videos, setVideos] = useState(null);
     const { searchTerm } = useParams();
+    const navigate = useNavigate();
     useEffect(() => {
         fetch(
             `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=48&q=${searchTerm}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`,
@@ -16,13 +18,17 @@ const SearchConts = () => {
             })
             .catch(error => console.log(error));
     }, [searchTerm]);
+    const handleCategoryChange = category => {
+        setSelectCategory(category);
+        navigate('/', { state: { category } });
+    };
     if (!videos) return <Loader />;
     return (
         <main id="main">
             <aside id="aside">
                 <Category
                     selectCategory={selectCategory}
-                    setSelectCategory={setSelectCategory}
+                    setSelectCategory={handleCategoryChange}
                 />
             </aside>
             <section id="contents">

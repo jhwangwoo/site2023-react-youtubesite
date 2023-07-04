@@ -9,8 +9,8 @@ const VideoConts = () => {
     const { id } = useParams();
     useEffect(() => {
         fetch(
-            'https://webstoryboy.github.io/site-youtube01/src/utils/subTest.json',
-            // `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${id}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`,
+            // 'https://webstoryboy.github.io/site-youtube01/src/utils/subTest.json',
+            `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${id}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`,
         )
             .then(response => response.json())
             .then(result => {
