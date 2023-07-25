@@ -1,41 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { Category, Videos } from './';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { Videos } from '.';
 import Loader from './Loader';
-import { useParams,useNavigate  } from 'react-router-dom';
 
 const SearchConts = () => {
-    const [selectCategory, setSelectCategory] = useState();
-    const [videos, setVideos] = useState(null);
+    const [videos, setvideos] = useState(null);
     const { searchTerm } = useParams();
-    const navigate = useNavigate();
     useEffect(() => {
         fetch(
+            // 'https://webstoryboy.github.io/site-youtube01/src/utils/test.json',
             `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=48&q=${searchTerm}&type=video&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`,
         )
             .then(response => response.json())
-            .then(result => {
-                setVideos(result.items);
-            })
+            .then(result => console.log(setvideos(result.items)))
             .catch(error => console.log(error));
-    }, [searchTerm]);
-    const handleCategoryChange = category => {
-        setSelectCategory(category);
-        navigate('/', { state: { category } });
-    };
+    }, [searchTerm]); //저장방법
     if (!videos) return <Loader />;
     return (
-        <main id="main">
-            <aside id="aside">
-                <Category
-                    selectCategory={selectCategory}
-                    setSelectCategory={handleCategoryChange}
-                />
-            </aside>
+        <main>
             <section id="contents">
-                <h2>검색어 : {searchTerm}</h2>
+                <h2>
+                    <em>{searchTerm}</em> 검색 결과
+                </h2>
                 <Videos videos={videos} />
             </section>
         </main>
     );
 };
+
 export default SearchConts;
