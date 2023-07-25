@@ -15,13 +15,13 @@ const SearchConts = () => {
             .then(result => console.log(setvideos(result.items)))
             .catch(error => console.log(error));
     }, [searchTerm]); //저장방법
+
     if (!videos) return <Loader />;
+
     return (
-        <main>
+        <main id="main">
             <section id="contents">
-                <h2>
-                    <em>{searchTerm}</em> 검색 결과
-                </h2>
+                <h2>{searchTerm} 검색 결과</h2>
                 <Videos videos={videos} />
             </section>
         </main>
